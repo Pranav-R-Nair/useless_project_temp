@@ -42,17 +42,7 @@ Software-only project Implementation
 
 For Software: Installation No special installation is required.
 
-Clone the repository using:
 
-git clone [YOUR-GITHUB-LINK]
-
-Navigate to the project folder:
-
-cd useless-clicker
-
-Open the project in Visual Studio Code.
-
-Run The project can be run directly by opening the main HTML file in a web browser.
 
 Project Documentation For Software:
 
