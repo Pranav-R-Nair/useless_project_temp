@@ -63,6 +63,7 @@ name : The application home page shown while opening the index.html , ie , the p
 certificate : The final result after pressing the STOP button, showing the user's recorded activity and the generated certificate.
 
 Diagrams 
+``` 
                     ┌───────────────┐
                     │     START     │
                     └───────┬───────┘
@@ -109,7 +110,7 @@ Diagrams
                     ┌───────────────┐
                     │      END      │
                     └───────────────┘
-
+```
 Demo
 Project Demo Video https://drive.google.com/file/d/1ypzoKI03nyTg8K5YjO1NRr4ZyNXti2hu/view?usp=sharing
 
