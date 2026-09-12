@@ -129,7 +129,7 @@ Documentation
 Sree Shivanni
 ```
 ```
-Testing and debugging 
+Testing
 Project presentation
 ```
 
