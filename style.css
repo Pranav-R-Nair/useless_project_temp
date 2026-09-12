@@ -1,0 +1,1776 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --black: #080808;
+    --near-black: #0d0d0d;
+    --panel: #111111;
+    --panel-2: #151515;
+
+    --white: #f5f5f0;
+    --muted: #777;
+
+    --red: #ff3b30;
+    --red-dark: #b91c1c;
+
+    --lime: #c8ff00;
+    --cyan: #00f0ff;
+    --yellow: #ffe600;
+    --purple: #a855f7;
+
+    --border: #292929;
+
+    --terminal-green: #7cff6b;
+
+    --grid: rgba(255, 255, 255, 0.035);
+
+    --mono: "Courier New", Courier, monospace;
+    --sans: "Inter", Arial, sans-serif;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% -20%,
+            rgba(255, 59, 48, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 100% 100%,
+            rgba(200, 255, 0, 0.06),
+            transparent 30%
+        ),
+        var(--black);
+
+    color: var(--white);
+
+    font-family: var(--sans);
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   BACKGROUND GRID
+========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    background-image:
+        linear-gradient(
+            var(--grid) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            var(--grid) 1px,
+            transparent 1px
+        );
+
+    background-size: 35px 35px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 90%
+        );
+}
+
+
+/* =========================================================
+   SCANLINES
+========================================================= */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 9998;
+
+    opacity: 0.035;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 3px,
+            #fff 4px
+        );
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.container {
+    position: relative;
+
+    z-index: 1;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px 20px 80px;
+}
+
+
+.content {
+    width: 100%;
+
+    max-width: 720px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.eyebrow {
+    display: inline-block;
+
+    color: var(--lime);
+
+    border: 1px solid
+        rgba(200, 255, 0, 0.35);
+
+    background:
+        rgba(200, 255, 0, 0.05);
+
+    padding: 7px 12px;
+
+    margin-bottom: 22px;
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   MAIN HEADING
+========================================================= */
+
+.content h1 {
+    font-family: var(--sans);
+
+    font-size:
+        clamp(
+            58px,
+            11vw,
+            110px
+        );
+
+    font-weight: 900;
+
+    line-height: 0.82;
+
+    letter-spacing: -7px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+
+    color: var(--white);
+
+    text-shadow:
+        5px 5px 0
+        rgba(255, 59, 48, 0.15);
+}
+
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
+.subtitle {
+    color: #888;
+
+    font-family: var(--mono);
+
+    font-size: 13px;
+
+    margin-bottom: 30px;
+}
+
+
+.subtitle::before {
+    content: "> ";
+
+    color: var(--terminal-green);
+}
+
+
+/* =========================================================
+   TIMER
+   DIRECTLY ABOVE THE BUTTON
+========================================================= */
+
+.timer-container {
+    position: relative;
+
+    width: 245px;
+
+    margin-bottom: 22px;
+
+    padding: 13px 18px 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #0b0b0b
+        );
+
+    border: 1px solid #292929;
+
+    border-top: 2px solid var(--cyan);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.35);
+
+    text-align: center;
+
+    order: 0;
+}
+
+
+/* Small top status */
+
+.timer-container::before {
+    content: "●  LIVE SYSTEM METRIC";
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--cyan);
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* Decorative ID */
+
+.timer-container::after {
+    content: "SYS_001";
+
+    position: absolute;
+
+    top: 7px;
+
+    right: 9px;
+
+    color: #333;
+
+    font-family: var(--mono);
+
+    font-size: 6px;
+}
+
+
+/* Timer label */
+
+.timer-label {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #666;
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* Actual timer */
+
+#timer {
+    color: var(--cyan);
+
+    font-family: var(--mono);
+
+    font-size: 29px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    letter-spacing: 1px;
+
+    font-variant-numeric: tabular-nums;
+
+    text-shadow:
+        0 0 12px
+        rgba(0, 240, 255, 0.35);
+}
+
+
+/* =========================================================
+   MAIN BUTTON
+   DIRECTLY BELOW TIMER
+========================================================= */
+
+#mainButton {
+    position: relative;
+
+    order: 1;
+
+    border: 2px solid var(--red);
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4b40,
+            var(--red)
+        );
+
+    color: white;
+
+    padding: 21px 45px;
+
+    font-family: var(--sans);
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    border-radius: 2px;
+
+    box-shadow:
+        0 0 0 1px #000,
+        0 9px 0 var(--red-dark),
+        0 18px 35px
+        rgba(255, 59, 48, 0.18);
+
+    transition:
+        transform 0.08s,
+        box-shadow 0.08s,
+        filter 0.2s;
+}
+
+
+#mainButton::before {
+    content: "⚠";
+
+    margin-right: 10px;
+}
+
+
+#mainButton:hover {
+    filter: brightness(1.15);
+
+    box-shadow:
+        0 0 25px
+        rgba(255, 59, 48, 0.25),
+        0 9px 0 var(--red-dark);
+}
+
+
+#mainButton:active {
+    transform: translateY(7px);
+
+    box-shadow:
+        0 2px 0 var(--red-dark);
+}
+
+
+#mainButton:disabled {
+    opacity: 0.35;
+
+    cursor: not-allowed;
+
+    filter: grayscale(1);
+}
+
+
+/* =========================================================
+   COUNTER
+========================================================= */
+
+.counter-container {
+    margin-top: 35px;
+
+    margin-bottom: 20px;
+}
+
+
+#counter {
+    color: var(--lime);
+
+    font-family: var(--mono);
+
+    font-size: 38px;
+
+    font-weight: 700;
+
+    text-shadow:
+        0 0 15px
+        rgba(200, 255, 0, 0.2);
+}
+
+
+/* =========================================================
+   STOP BUTTON
+========================================================= */
+
+#stopButton {
+    border: 1px solid #444;
+
+    background: transparent;
+
+    color: #aaa;
+
+    padding: 10px 26px;
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    border-radius: 2px;
+
+    transition: 0.2s;
+}
+
+
+#stopButton::before {
+    content: "■ ";
+
+    color: var(--red);
+}
+
+
+#stopButton:hover {
+    background: #171717;
+
+    color: white;
+
+    border-color: #777;
+}
+
+
+#stopButton:disabled {
+    opacity: 0.3;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+#status {
+    min-height: 22px;
+
+    margin-top: 25px;
+
+    color: var(--terminal-green);
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+}
+
+
+#status::before {
+    content: "[SYSTEM] ";
+
+    color: #555;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    position: absolute;
+
+    bottom: 22px;
+
+    color: #444;
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+footer::before {
+    content: "BUILD STATUS: ";
+
+    color: var(--terminal-green);
+}
+
+
+/* =========================================================
+   NAME POPUP
+========================================================= */
+
+.name-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0, 0, 0, 0.92);
+
+    backdrop-filter: blur(10px);
+}
+
+
+.name-box {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 500px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #0c0c0c
+        );
+
+    border: 1px solid #333;
+
+    padding: 42px;
+
+    text-align: left;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0, 0, 0, 0.8);
+}
+
+
+.name-box::before {
+    content: "USELESS_PROJECT.exe";
+
+    display: block;
+
+    margin: -20px -20px 30px;
+
+    padding: 9px 15px;
+
+    background: #1c1c1c;
+
+    border-bottom: 1px solid #333;
+
+    color: #666;
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+}
+
+
+.warning-icon {
+    width: 48px;
+
+    height: 48px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--yellow);
+
+    color: #000;
+
+    font-family: var(--mono);
+
+    font-size: 25px;
+
+    font-weight: 900;
+
+    clip-path:
+        polygon(
+            50% 0%,
+            100% 100%,
+            0% 100%
+        );
+}
+
+
+.name-eyebrow {
+    color: var(--red);
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 14px;
+}
+
+
+.name-box h1 {
+    color: white;
+
+    font-size: 38px;
+
+    line-height: 0.95;
+
+    letter-spacing: -2px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 20px;
+}
+
+
+.name-description {
+    color: #777;
+
+    font-family: var(--mono);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+
+.name-box label {
+    display: block;
+
+    color: #777;
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 7px;
+}
+
+
+#nameInput {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #333;
+
+    outline: none;
+
+    background: #080808;
+
+    color: white;
+
+    font-family: var(--mono);
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+
+
+#nameInput::placeholder {
+    color: #444;
+}
+
+
+#nameInput:focus {
+    border-color: var(--lime);
+
+    box-shadow:
+        0 0 15px
+        rgba(200, 255, 0, 0.08);
+}
+
+
+#nameInput.input-error {
+    border-color: var(--red);
+}
+
+
+.name-error {
+    min-height: 18px;
+
+    color: var(--red);
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+}
+
+
+#beginButton {
+    width: 100%;
+
+    border: none;
+
+    background: var(--lime);
+
+    color: #000;
+
+    padding: 15px;
+
+    margin-top: 8px;
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+}
+
+
+#beginButton:hover {
+    background: #dcff5c;
+}
+
+
+.fine-print {
+    color: #444;
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    line-height: 1.5;
+
+    margin-top: 15px;
+}
+
+
+/* =========================================================
+   GENERAL OVERLAY
+========================================================= */
+
+.overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0, 0, 0, 0.9);
+
+    backdrop-filter: blur(8px);
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading-box {
+    width: 100%;
+
+    max-width: 460px;
+
+    background: #0d0d0d;
+
+    border: 1px solid #333;
+
+    padding: 40px;
+
+    text-align: center;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0, 0, 0, 0.8);
+}
+
+
+.spinner {
+    width: 45px;
+
+    height: 45px;
+
+    margin: 0 auto 25px;
+
+    border: 3px solid #222;
+
+    border-top-color: var(--lime);
+
+    border-right-color: var(--red);
+
+    border-radius: 50%;
+
+    animation:
+        spin 0.7s linear infinite;
+}
+
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+.loading-box h2 {
+    color: white;
+
+    font-family: var(--mono);
+
+    font-size: 18px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 12px;
+}
+
+
+.loading-box p {
+    color: var(--terminal-green);
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    min-height: 18px;
+}
+
+
+.loading-box p::before {
+    content: "> ";
+}
+
+
+.loading-bar {
+    height: 7px;
+
+    background: #1d1d1d;
+
+    border: 1px solid #333;
+
+    margin-top: 25px;
+
+    overflow: hidden;
+}
+
+
+#loadingProgress {
+    height: 100%;
+
+    width: 0;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            var(--lime),
+            var(--lime) 10px,
+            #a9d900 10px,
+            #a9d900 20px
+        );
+
+    transition:
+        width 0.1s linear;
+}
+
+
+/* =========================================================
+   CERTIFICATE WINDOW
+========================================================= */
+
+.certificate-window {
+    width:
+        min(
+            800px,
+            94vw
+        );
+
+    max-height: 94vh;
+
+    overflow-y: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   CERTIFICATE
+========================================================= */
+
+.certificate {
+    width: 100%;
+
+    background: #f1f0e9;
+
+    padding: 7px;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0, 0, 0, 0.8);
+}
+
+
+.certificate-border {
+    position: relative;
+
+    border: 3px double #111;
+
+    padding: 38px 25px 30px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7f6ef,
+            #e9e7dc
+        );
+}
+
+
+.certificate-border::before {
+    content:
+        "HACKATHON SUBMISSION // VERIFIED USELESS";
+
+    position: absolute;
+
+    top: 10px;
+
+    left: 0;
+
+    right: 0;
+
+    color: #999;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+}
+
+
+.certificate-small {
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    color: #555;
+
+    margin-bottom: 5px;
+}
+
+
+.institute {
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    color: #777;
+
+    letter-spacing: 1px;
+}
+
+
+.divider {
+    width: 80px;
+
+    height: 2px;
+
+    background: #111;
+
+    margin: 15px auto;
+}
+
+
+/* =========================================================
+   CONGRATULATIONS
+========================================================= */
+
+.congratulations {
+    font-family: Georgia, serif;
+
+    font-style: italic;
+
+    font-size:
+        clamp(
+            45px,
+            8vw,
+            75px
+        );
+
+    line-height: 1;
+
+    color: #111;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   CERTIFICATE TEXT
+========================================================= */
+
+.certificate-text {
+    font-family: Georgia, serif;
+
+    font-size: 15px;
+
+    color: #555;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CERTIFICATE NAME
+========================================================= */
+
+.certificate-name {
+    font-family: Georgia, serif;
+
+    font-size:
+        clamp(
+            30px,
+            6vw,
+            48px
+        );
+
+    font-style: italic;
+
+    color: #111;
+
+    border-bottom: 1px solid #888;
+
+    display: inline-block;
+
+    padding: 3px 30px 5px;
+
+    margin: 10px 0 8px;
+
+    max-width: 90%;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   CERTIFICATE NUMBERS
+========================================================= */
+
+.big-number {
+    font-family: var(--mono);
+
+    font-size: 42px;
+
+    font-weight: 900;
+
+    line-height: 1;
+
+    color: #111;
+
+    margin: 7px 0;
+}
+
+
+.time-number {
+    font-size: 34px;
+}
+
+
+/* =========================================================
+   SEAL
+========================================================= */
+
+.seal {
+    width: 70px;
+
+    height: 70px;
+
+    margin: 18px auto 12px;
+
+    border: 3px solid #111;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #111;
+
+    transform: rotate(-8deg);
+}
+
+
+.seal span {
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+.seal small {
+    font-family: var(--mono);
+
+    font-size: 6px;
+
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   DATE + ID
+========================================================= */
+
+.certificate-date {
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    color: #555;
+
+    margin-top: 8px;
+}
+
+
+.certificate-id {
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: #999;
+
+    letter-spacing: 1px;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   CERTIFICATE ACTIONS
+========================================================= */
+
+.certificate-bottom-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+
+.certificate-action-button {
+    border: 1px solid #444;
+
+    background: #111;
+
+    color: white;
+
+    padding: 10px 18px;
+
+    border-radius: 2px;
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.certificate-action-button:hover {
+    background: var(--lime);
+
+    color: #000;
+
+    border-color: var(--lime);
+}
+
+
+/* =========================================================
+   RANDOM EMOJI
+========================================================= */
+
+.useless-floating-emoji {
+    position: fixed;
+
+    z-index: 9999;
+
+    pointer-events: none;
+
+    user-select: none;
+
+    will-change:
+        transform,
+        opacity;
+
+    animation-name:
+        uselessEmojiPop;
+
+    animation-timing-function:
+        cubic-bezier(
+            0.2,
+            0.8,
+            0.2,
+            1
+        );
+
+    animation-fill-mode: both;
+
+    filter:
+        drop-shadow(
+            0 5px 10px
+            rgba(0, 0, 0, 0.4)
+        );
+}
+
+
+@keyframes uselessEmojiPop {
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(40px)
+            scale(0.2)
+            rotate(
+                var(--emoji-rotation)
+            );
+    }
+
+    15% {
+        opacity: 1;
+
+        transform:
+            translateY(-10px)
+            scale(1.25)
+            rotate(
+                var(--emoji-rotation)
+            );
+    }
+
+    45% {
+        opacity: 1;
+
+        transform:
+            translateY(-30px)
+            scale(1)
+            rotate(
+                var(--emoji-rotation)
+            );
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-160px)
+            scale(0.7)
+            rotate(
+                calc(
+                    var(--emoji-rotation) + 35deg
+                )
+            );
+    }
+}
+
+
+/* =========================================================
+   BIG EMOJI CELEBRATION
+========================================================= */
+
+.useless-celebration {
+    position: fixed;
+
+    z-index: 10000;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.5);
+
+    pointer-events: none;
+
+    user-select: none;
+
+    white-space: nowrap;
+
+    color: #000;
+
+    background: var(--lime);
+
+    border: 3px solid #000;
+
+    padding: 18px 28px;
+
+    border-radius: 2px;
+
+    font-family: var(--sans);
+
+    font-size:
+        clamp(
+            20px,
+            5vw,
+            38px
+        );
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        8px 8px 0 #000;
+
+    animation:
+        uselessCelebrationPop
+        1.8s
+        cubic-bezier(
+            0.2,
+            0.8,
+            0.2,
+            1
+        )
+        forwards;
+}
+
+
+@keyframes uselessCelebrationPop {
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.3)
+            rotate(-8deg);
+    }
+
+    20% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15)
+            rotate(3deg);
+    }
+
+    35% {
+        transform:
+            translate(-50%, -50%)
+            scale(1)
+            rotate(0deg);
+    }
+
+    75% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -70%)
+            scale(0.8);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        padding:
+            30px 15px 70px;
+    }
+
+
+    .content h1 {
+        font-size:
+            clamp(
+                52px,
+                17vw,
+                80px
+            );
+
+        letter-spacing: -4px;
+    }
+
+
+    .subtitle {
+        font-size: 11px;
+
+        margin-bottom: 25px;
+    }
+
+
+    /* Timer remains directly above button */
+
+    .timer-container {
+        position: relative;
+
+        top: auto;
+
+        right: auto;
+
+        width: 210px;
+
+        margin:
+            0 auto 20px;
+
+        text-align: center;
+
+        border-top: 2px solid var(--cyan);
+    }
+
+
+    .timer-container::after {
+        display: none;
+    }
+
+
+    #timer {
+        font-size: 25px;
+    }
+
+
+    #mainButton {
+        width: 90%;
+
+        padding:
+            19px 20px;
+    }
+
+
+    .name-box {
+        padding:
+            30px 22px;
+    }
+
+
+    .name-box h1 {
+        font-size: 31px;
+    }
+
+
+    .certificate-border {
+        padding:
+            30px 15px 25px;
+    }
+
+
+    .certificate-text {
+        font-size: 13px;
+    }
+
+
+    .certificate-name {
+        padding-left: 15px;
+
+        padding-right: 15px;
+    }
+
+
+    .certificate-bottom-actions {
+        margin-top: 10px;
+    }
+
+
+    .certificate-action-button {
+        padding:
+            8px 14px;
+    }
+
+
+    .useless-celebration {
+        max-width: 90vw;
+
+        text-align: center;
+
+        white-space: normal;
+
+        padding:
+            14px 18px;
+    }
+}
+
+
+/* =========================================================
+   EXTRA SMALL DEVICES
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .content h1 {
+        font-size: 52px;
+    }
+
+
+    #timer {
+        font-size: 23px;
+    }
+
+
+    #counter {
+        font-size: 32px;
+    }
+
+
+    .certificate {
+        padding: 5px;
+    }
+
+
+    .certificate-border {
+        padding:
+            25px 10px 20px;
+    }
+
+
+    .congratulations {
+        font-size: 42px;
+    }
+
+
+    .big-number {
+        font-size: 36px;
+    }
+
+
+    .time-number {
+        font-size: 28px;
+    }
+
+
+    .certificate-name {
+        font-size: 27px;
+
+        padding-left: 8px;
+
+        padding-right: 8px;
+    }
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+    body {
+        background: white;
+
+        color: black;
+    }
+
+
+    body::before,
+    body::after {
+        display: none;
+    }
+
+
+    body > * {
+        display: none !important;
+    }
+
+
+    #certificateOverlay {
+        display: flex !important;
+
+        position: static;
+
+        width: 100%;
+
+        height: auto;
+
+        background: white;
+
+        padding: 0;
+    }
+
+
+    .certificate-window {
+        width: 100%;
+
+        max-width: none;
+
+        max-height: none;
+
+        overflow: visible;
+    }
+
+
+    .certificate {
+        box-shadow: none;
+
+        width: 100%;
+
+        padding: 0;
+    }
+
+
+    .certificate-border {
+        padding:
+            45px 30px;
+
+        border:
+            3px double #111;
+    }
+
+
+    .certificate-bottom-actions {
+        display: none !important;
+    }
+
+
+    @page {
+        size: A4 landscape;
+
+        margin: 12mm;
+    }
+}

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="The Useless Button - click it, waste time, get a certificate."
+    >
+
+    <title>The Useless Button</title>
+
+
+    <!-- =========================================
+         GOOGLE FONTS
+    ========================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================
+         CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAME POPUP
+    ====================================================== -->
+
+    <div
+        id="nameOverlay"
+        class="name-overlay"
+    >
+
+        <div class="name-box">
+
+
+            <!-- Warning Icon -->
+
+            <div class="warning-icon">
+                !
+            </div>
+
+
+            <!-- Eyebrow -->
+
+            <div class="name-eyebrow">
+                IMPORTANT LIFE DECISION
+            </div>
+
+
+            <!-- Heading -->
+
+            <h1>
+                Welcome to<br>
+                The Useless Button.
+            </h1>
+
+
+            <!-- Description -->
+
+            <p class="name-description">
+                Before wasting your valuable time,
+                tell us who you are.
+            </p>
+
+
+            <!-- Name Label -->
+
+            <label for="nameInput">
+                YOUR NAME
+            </label>
+
+
+            <!-- Name Input -->
+
+            <input
+                type="text"
+                id="nameInput"
+                placeholder="Enter your name"
+                autocomplete="off"
+                maxlength="50"
+            >
+
+
+            <!-- Error -->
+
+            <div
+                id="nameError"
+                class="name-error"
+                aria-live="polite"
+            ></div>
+
+
+            <!-- Begin Button -->
+
+            <button
+                type="button"
+                id="beginButton"
+            >
+                BEGIN WASTING TIME
+            </button>
+
+
+            <!-- Fine Print -->
+
+            <p class="fine-print">
+                Your name will appear on your
+                completely unnecessary certificate.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MAIN PAGE
+    ====================================================== -->
+
+    <main class="container">
+
+        <div class="content">
+
+
+            <!-- Eyebrow -->
+
+            <div class="eyebrow">
+                THE MOST USELESS PROJECT EVER
+            </div>
+
+
+            <!-- Main Heading -->
+
+            <h1>
+                Click the<br>
+                Button.
+            </h1>
+
+
+            <!-- Subtitle -->
+
+            <p class="subtitle">
+                There is absolutely no reason to do this.
+            </p>
+
+
+
+            <!-- =================================================
+                 TIMER
+            ================================================== -->
+
+            <div class="timer-container">
+
+                <span class="timer-label">
+                    TIME WASTED
+                </span>
+
+
+                <div id="timer">
+                    00:00:00
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MAIN RED BUTTON
+            ================================================== -->
+
+            <button
+                type="button"
+                id="mainButton"
+            >
+                CLICK ME
+            </button>
+
+
+
+            <!-- =================================================
+                 CLICK COUNTER
+            ================================================== -->
+
+            <div class="counter-container">
+
+                <span class="counter-label">
+                    TIMES CLICKED
+                </span>
+
+
+                <div id="counter">
+                    0
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STOP BUTTON
+            ================================================== -->
+
+            <button
+                type="button"
+                id="stopButton"
+            >
+                STOP
+            </button>
+
+
+
+            <!-- =================================================
+                 STATUS
+            ================================================== -->
+
+            <div
+                id="status"
+                aria-live="polite"
+            >
+                Your journey begins here.
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer>
+            Made for absolutely no reason.
+        </footer>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         CERTIFICATE GENERATION LOADING SCREEN
+    ====================================================== -->
+
+    <div
+        id="loadingOverlay"
+        class="overlay hidden"
+        aria-hidden="true"
+    >
+
+        <div class="loading-box">
+
+
+            <!-- Spinner -->
+
+            <div
+                class="spinner"
+                aria-hidden="true"
+            ></div>
+
+
+            <!-- Heading -->
+
+            <h2>
+                Generating Certificate
+            </h2>
+
+
+            <!-- Loading Message -->
+
+            <p
+                id="loadingText"
+                aria-live="polite"
+            >
+                Analyzing your life choices...
+            </p>
+
+
+            <!-- Progress Bar -->
+
+            <div class="loading-bar">
+
+                <div
+                    id="loadingProgress"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CERTIFICATE OVERLAY
+    ====================================================== -->
+
+    <div
+        id="certificateOverlay"
+        class="overlay hidden"
+        aria-hidden="true"
+    >
+
+        <div
+            class="certificate-window"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Useless Button Certificate"
+        >
+
+
+            <!-- =================================================
+                 CERTIFICATE
+            ================================================== -->
+
+            <div class="certificate">
+
+                <div class="certificate-border">
+
+
+                    <!-- Certificate Type -->
+
+                    <div class="certificate-small">
+                        OFFICIAL CERTIFICATE OF
+                    </div>
+
+
+                    <!-- Organization -->
+
+                    <div class="institute">
+                        The Institute of Pointless Achievements
+                    </div>
+
+
+                    <!-- Divider -->
+
+                    <div class="divider"></div>
+
+
+
+                    <!-- =================================================
+                         CONGRATULATIONS
+                    ================================================== -->
+
+                    <div class="congratulations">
+                        Congratulations
+                    </div>
+
+
+
+                    <!-- Intro -->
+
+                    <div class="certificate-text">
+                        This prestigious certificate is awarded to
+                    </div>
+
+
+
+                    <!-- =================================================
+                         USER NAME
+                    ================================================== -->
+
+                    <div
+                        id="certificateName"
+                        class="certificate-name"
+                    >
+                        Your Name
+                    </div>
+
+
+
+                    <!-- Click Text -->
+
+                    <div class="certificate-text">
+                        for successfully clicking the button
+                    </div>
+
+
+
+                    <!-- =================================================
+                         CLICK NUMBER
+                    ================================================== -->
+
+                    <div
+                        id="certificateClicks"
+                        class="big-number"
+                    >
+                        0
+                    </div>
+
+
+
+                    <!-- Time Text -->
+
+                    <div class="certificate-text">
+                        times and wasting
+                    </div>
+
+
+
+                    <!-- =================================================
+                         TIME NUMBER
+                    ================================================== -->
+
+                    <div
+                        id="certificateTime"
+                        class="big-number time-number"
+                    >
+                        0
+                    </div>
+
+
+
+                    <!-- Seconds -->
+
+                    <div class="certificate-text">
+                        seconds of their life.
+                    </div>
+
+
+
+                    <!-- =================================================
+                         USELESS SEAL
+                    ================================================== -->
+
+                    <div class="seal">
+
+                        <span>
+                            USELESS
+                        </span>
+
+                        <small>
+                            VERIFIED
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         DATE
+                    ================================================== -->
+
+                    <div
+                        id="certificateDate"
+                        class="certificate-date"
+                    >
+                        Issued today
+                    </div>
+
+
+
+                    <!-- =================================================
+                         CERTIFICATE ID
+                    ================================================== -->
+
+                    <div
+                        id="certificateId"
+                        class="certificate-id"
+                    >
+                        CERTIFICATE ID: BTN-000000
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CERTIFICATE BUTTONS
+            ================================================== -->
+
+            <div class="certificate-bottom-actions">
+
+
+                <!-- PRINT -->
+
+                <button
+                    type="button"
+                    id="printCertificate"
+                    class="certificate-action-button"
+                    title="Print certificate"
+                >
+                    🖨 Print
+                </button>
+
+
+                <!-- CLOSE -->
+
+                <button
+                    type="button"
+                    id="closeCertificateBottom"
+                    class="certificate-action-button"
+                    title="Close certificate"
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
