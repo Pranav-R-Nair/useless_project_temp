@@ -112,15 +112,36 @@ Diagrams
                     └───────────────┘
 ```
 Demo
+
+Project Demo : useless-project-temp-eight-gamma.vercel.app
 Project Demo Video https://drive.google.com/file/d/1ypzoKI03nyTg8K5YjO1NRr4ZyNXti2hu/view?usp=sharing
 
 The demo video demonstrates the complete working of Useless Clicker, including starting the timer, clicking the button, counting the clicks, stopping the session, and generating the final certificate.
 
 Team Contributions
-
-Pranav R Nair Project development HTML structure JavaScript functionality Timer implementation Click counter implementation Certificate generation Overall project integration UI design and styling CSS implementation Testing and debugging Documentation
-
-Sree Shivanni Testing and debugging Project presentation
+```
+Pranav R Nair 
+```
+```
+Project development 
+HTML structure 
+JavaScript functionality 
+Timer implementation
+Click counter implementation
+Certificate generation 
+Overall project integration
+UI design and styling 
+CSS implementation 
+Testing and debugging
+Documentation
+```
+```
+Sree Shivanni
+```
+```
+Testing and debugging 
+Project presentation
+```
 
 Made with ❤️ at TinkerHub Useless Projects
 ![Static Badge](https://img.shields.io/badge/TinkerHub-24?color=%23000000&link=https%3A%2F%2Fwww.tinkerhub.org%2F)
